@@ -53,17 +53,17 @@ public class Majors {
         phys.add("(0) phys 221");
         phys.add("(1) phys 221");
         phys.add("(2) phys 222");
-        phys.add("(3) phys 223");
+
 
 
     }
     static ArrayList engr = new ArrayList();
 
     static {
-        engr.add("(0) phys 221");
-        engr.add("(1) phys 221");
-        engr.add("(2) phys 222");
-        engr.add("(3) phys 223");
+        engr.add("(0) engr 111");
+        engr.add("(1) Statics engr214 ");
+        engr.add("(2) Dynamics engr 215");
+        engr.add("(3) Mechanics of Materials engr 225");
     }
 
 
