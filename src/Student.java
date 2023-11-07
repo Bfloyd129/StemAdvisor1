@@ -9,12 +9,14 @@ public class Student {
     int engl;
     int engr;
     int chem;
+    int nextQuarter;
+    boolean allowSummer;
 
     public Student() {
-        this("", "", 0, 0, 0, 0, 0, 0, 0);
+        this("", "", 0, 0, 0, 0, 0, 0, 0, 0, false);
     }
 
-    public Student(String first, String last, int major, int math, int phys, int CS, int engl, int engr, int chem) {
+    public Student(String first, String last, int major, int math, int phys, int CS, int engl, int engr, int chem, int nextQuarter, boolean allowSummer) {
         this.last = last;
         this.first = first;
         this.major = major;
@@ -24,6 +26,8 @@ public class Student {
         this.engl = engl;
         this.engr = engr;
         this.chem = chem;
+        this.nextQuarter = nextQuarter;
+        this.allowSummer = allowSummer;
 
     }
 

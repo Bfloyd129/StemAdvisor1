@@ -66,6 +66,15 @@ public class Majors {
         engr.add("(3) Mechanics of Materials engr 225");
     }
 
+    static ArrayList nextQuarter = new ArrayList();
+
+    static {
+        nextQuarter.add("(0) FALL");
+        nextQuarter.add("(1) WINTER");
+        nextQuarter.add("(2) SPRING");
+        nextQuarter.add("(3) SUMMER");
+    }
+
 
 
         public void engr(){

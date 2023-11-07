@@ -19,6 +19,9 @@ public class StemAdvisor {
     static int engl = 0;
     static int engr = 0;
     static int chem = 0;
+    static int nextQuarter = 0;
+
+    static boolean allowSummer = false;
     static Scanner keyboard = new Scanner(System.in);
 
 
@@ -34,7 +37,7 @@ public class StemAdvisor {
         collectdata();
 
 
-        Student Student1 = new Student(FirstName, LastName, major, math, phys, CS, engl, engr, chem);
+        Student Student1 = new Student(FirstName, LastName, major, math, phys, CS, engl, engr, chem, nextQuarter, allowSummer);
         System.out.println("Thanks " + FirstName + "," + "\nYou selected " + Majors.mathList.get(math) + ", " +
                 Majors.chem.get(chem) + " " + Majors.english.get(engl) + ", " + Majors.phys.get(phys) + ", " +
                 Majors.CS.get(CS) + ", " + Majors.engr.get(engr));
@@ -55,7 +58,30 @@ public class StemAdvisor {
         phys = getInput("phys", Majors.phys);
         CS = getInput("CS", Majors.CS);
         engr = getInput("engr", Majors.engr);
+        nextQuarter = getInput("nextQuarter", Majors.nextQuarter);
+        System.out.println("Are you interested in taking classes during the summer quarter? (enter true/false)");
+        allowSummer = booleanCheck();
     }
+
+    public static boolean booleanCheck() {
+        boolean test = false;
+        if(keyboard.hasNextBoolean()) {
+            test = true;
+            return keyboard.nextBoolean();
+
+        } else {
+                System.out.println("Your input was weird. Please enter a true or false ");
+
+                while (!(keyboard.hasNextBoolean())) {
+                    System.out.println("Please enter a true or false. Try Again.");
+                    keyboard.next();
+                }
+            }
+        return keyboard.nextBoolean();
+
+        }
+
+
 
     public static int getInput(String subject, ArrayList options) {
         boolean valid = false;
@@ -72,6 +98,7 @@ public class StemAdvisor {
             System.out.println(options);
             // Prevents infinite loop
             keyboard.nextLine();
+
 
             if (keyboard.hasNextInt()) {
                 input = keyboard.nextInt();
