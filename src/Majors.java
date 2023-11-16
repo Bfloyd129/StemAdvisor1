@@ -1,19 +1,34 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 
 public class Majors {
-    static ArrayList ArraylistMajors = new ArrayList();
+    int mathReq;
+    int physReq;
+    int CSReq;
+    int englReq;
+    int engrReq;
+    int chemReq;
 
+    static ArrayList<String> ArraylistMajors = new ArrayList<>();
+    public Majors( int math, int phys, int CS, int engl,int engr, int chem){
+        this.mathReq = math;
+        this.physReq = phys;
+        this.CSReq = CS;
+        this.englReq = engl;
+        this.engrReq = engr;
+        this.chemReq = chem;
+
+    }
 
     static {
-        ArraylistMajors.add("(0) None");
-        ArraylistMajors.add("(1) Mechanical Engr AS-T");
-        ArraylistMajors.add("(2) Physics AS-T");
-        ArraylistMajors.add("(3) CS AA-DTA");
-        ArraylistMajors.add("(4) CS AS-T2");
-        ArraylistMajors.add("(5) Computer Engr AS-T2");
-        ArraylistMajors.add("(6) Chem AS-T1");
+
+        ArraylistMajors.add("(0) Mechanical Engr AS-T");
+        ArraylistMajors.add("(1) Physics AS-T");
+        ArraylistMajors.add("(2) CS AA-DTA");
+        ArraylistMajors.add("(3) CS AS-T2");
+        ArraylistMajors.add("(4) Computer Engr AS-T2");
+        ArraylistMajors.add("(5) Chem AS-T1");
     }
     static ArrayList mathList = new ArrayList();
     static {
@@ -105,27 +120,20 @@ public class Majors {
         nextQuarter.add("(3) SUMMER");
     }
 
-
-
-
-
-    public void engr(){
+    public static void setEngr(Student student){
+        Majors engrStudent = new Majors(7+1, 3+1,1+1,1+1, 2, 2+1);
+        fill(engrStudent,student);
+    }
+    public static void setPhys(Student student){
         int math = 7+1;
         int chem = 2+1;
         int english = 1+1;
         int phys = 2+1;
         int CS = 1+1;
         int total = math + chem + phys + english + CS;
+        System.out.println();
     }
-    public void phys(){
-        int math = 7+1;
-        int chem = 2+1;
-        int english = 1+1;
-        int phys = 2+1;
-        int CS = 1+1;
-        int total = math + chem + phys + english + CS;
-    }
-    public void CS(){
+    public static void setCS(){
         int math = 7+1;
         int chem = 2+1;
         int english = 1+1;
@@ -133,7 +141,7 @@ public class Majors {
         int CS = 5+1;
         int total = math + chem + phys + english + CS;
     }
-    public void setChem(){
+    public static void setChem(Student student){
         int math = 7+1;
         int chem = 2+1;
         int english = 1+1;
@@ -141,8 +149,114 @@ public class Majors {
         int CS = 1+1;
         int total = math + chem + phys + english + CS;
     }
+    public static boolean isFull(int test){
+        boolean isFull = false;
+        if(test == 3){
+            isFull = true;
+
+        }
+        return isFull;
+    }
+public static void fill(Majors major, Student student){
+    int mathReq = major.mathReq;
+        int chemReq = major.chemReq;
+        int englishReq = major.englReq;
+        int physReq = major.physReq;
+        int CSReq = major.CSReq;
+        int engrReq = major.engrReq;
+        boolean full = false;
+    ArrayList<String[]> engrSched = new ArrayList();
+    //int quarterNum = 0;
+    boolean enoughCredits = false;
+    while(!enoughCredits) {
+
+        while (!full) {
+            if (student.math >= mathReq && student.CS >= CSReq &&
+                    student.engl >= englishReq && student.engr >= engrReq
+                    && student.chem >= chemReq && student.phys >= physReq) {
+                enoughCredits = true;
+
+                for(int p = 0; p < engrSched.size(); p++) {
+                    System.out.println(Arrays.toString(engrSched.get(p)));
+
+                }
+                    break;}
+            full=false;
+            int i = 0;
+            String[] quarter = new String[4];
+            engrSched.add(quarter);
+            if (student.math < mathReq) {
+                int b = student.math + 1;
+                quarter[i] = (String) mathList.get(b);
+                student.math = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            if (student.CS < CSReq) {
+                int b = student.math + 1;
+                quarter[i] = (String) CS.get(b);
+                student.CS = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            if (student.engl < englishReq) {
+                int b = student.engl + 1;
+                quarter[i] = (String) english.get(b);
+                student.engl = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            if (student.chem < chemReq) {
+                int b = student.chem + 1;
+                quarter[i] = (String) chem.get(b);
+                student.chem = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            if (student.phys < physReq) {
+                int b = student.phys + 1;
+                quarter[i] = (String) chem.get(b);
+                student.phys = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            if (student.engr < engrReq) {
+                int b = student.engr + 1;
+                quarter[i] = (String) engr.get(b);
+                student.engr = b;
+                i++;
+            }
+            if (isFull(i)) {
+
+                break;
+            }
+            quarter[i] = ("elective");
+            i++;
+            break;
+
+
+        }
+        }
+
+        }
+    }
 
 
 
 
-}
+

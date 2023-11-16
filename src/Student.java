@@ -30,6 +30,4 @@ public class Student {
         this.allowSummer = allowSummer;
 
     }
-
-
 }

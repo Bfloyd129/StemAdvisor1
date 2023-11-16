@@ -41,6 +41,8 @@ public class StemAdvisor {
         System.out.println("Thanks " + FirstName + "," + "\nYou selected " + Majors.mathList.get(math) + ", " +
                 Majors.chem.get(chem) + " " + Majors.english.get(engl) + ", " + Majors.phys.get(phys) + ", " +
                 Majors.CS.get(CS) + ", " + Majors.engr.get(engr));
+        schedule.createSchedule(Student1);
+
 
 
     }
