@@ -9,9 +9,12 @@ public class Majors {
     int englReq;
     int engrReq;
     int chemReq;
+    static int I = 0;
+    static boolean full = false;
 
     static ArrayList<String> ArraylistMajors = new ArrayList<>();
-    public Majors( int math, int phys, int CS, int engl,int engr, int chem){
+
+    public Majors(int math, int phys, int CS, int engl, int engr, int chem) {
         this.mathReq = math;
         this.physReq = phys;
         this.CSReq = CS;
@@ -30,7 +33,9 @@ public class Majors {
         ArraylistMajors.add("(4) Computer Engr AS-T2");
         ArraylistMajors.add("(5) Chem AS-T1");
     }
+
     static ArrayList mathList = new ArrayList();
+
     static {
         mathList.add("(0) None");
         mathList.add("(1) Algebra for Precalc");
@@ -49,7 +54,8 @@ public class Majors {
 
 
     static ArrayList chem = new ArrayList();
-    static{
+
+    static {
         chem.add("(0) None");
         chem.add("(1) CHEM& 121");
         chem.add("(2) CHEM& 139");
@@ -61,10 +67,10 @@ public class Majors {
         chem.add("(7) CHEM& 263");
 
 
-
-
     }
+
     static ArrayList english = new ArrayList();
+
     static {
         english.add("(0) None");
         english.add("(1) ENGL& 99");
@@ -74,7 +80,9 @@ public class Majors {
 
 
     }
+
     static ArrayList CS = new ArrayList();
+
     static {
         CS.add("(0) None");
         CS.add("(1) CS 115");
@@ -86,21 +94,17 @@ public class Majors {
         CS.add("(7) CS III Java");
 
 
-
-
     }
+
     static ArrayList phys = new ArrayList();
+
     static {
         phys.add("(0) PHYS& 221");
         phys.add("(1) PHYS& 222");
         phys.add("(2) PHYS& 223");
 
-
-
-
-
-
     }
+
     static ArrayList engr = new ArrayList();
 
 
@@ -120,141 +124,110 @@ public class Majors {
         nextQuarter.add("(3) SUMMER");
     }
 
-    public static void setEngr(Student student){
-        Majors engrStudent = new Majors(7+1, 3+1,1+1,1+1, 2, 2+1);
-        fill(engrStudent,student);
+    public static void setEngr(Student student) {
+        Majors engrStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);
+        fill(engrStudent, student);
     }
-    public static void setPhys(Student student){
-        int math = 7+1;
-        int chem = 2+1;
-        int english = 1+1;
-        int phys = 2+1;
-        int CS = 1+1;
+
+    public static void setPhys(Student student) {
+        int math = 7 + 1;
+        int chem = 2 + 1;
+        int english = 1 + 1;
+        int phys = 2 + 1;
+        int CS = 1 + 1;
         int total = math + chem + phys + english + CS;
         System.out.println();
     }
-    public static void setCS(){
-        int math = 7+1;
-        int chem = 2+1;
-        int english = 1+1;
-        int phys = 2+1;
-        int CS = 5+1;
-        int total = math + chem + phys + english + CS;
-    }
-    public static void setChem(Student student){
-        int math = 7+1;
-        int chem = 2+1;
-        int english = 1+1;
-        int phys = 2+1;
-        int CS = 1+1;
-        int total = math + chem + phys + english + CS;
-    }
-    public static boolean isFull(int test){
-        boolean isFull = false;
-        if(test == 3){
-            isFull = true;
 
-        }
-        return isFull;
+    public static void setCS() {
+        int math = 7 + 1;
+        int chem = 2 + 1;
+        int english = 1 + 1;
+        int phys = 2 + 1;
+        int CS = 5 + 1;
+        int total = math + chem + phys + english + CS;
     }
-public static void fill(Majors major, Student student){
-    int mathReq = major.mathReq;
+
+    public static void setChem(Student student) {
+        int math = 7 + 1;
+        int chem = 2 + 1;
+        int english = 1 + 1;
+        int phys = 2 + 1;
+        int CS = 1 + 1;
+        int total = math + chem + phys + english + CS;
+    }
+
+    public static int matchFill(int studentVal, int reqVal, String[] quarter, ArrayList<String> classList){
+        int b = studentVal;
+        if (I < 3) {
+            if (studentVal < reqVal) {
+                b = studentVal + 1;
+                quarter[I] = classList.get(b);
+                I++;
+            }
+        }
+        return b;
+    }
+
+    public static void fill(Majors major, Student student) {
+        int mathReq = major.mathReq;
         int chemReq = major.chemReq;
         int englishReq = major.englReq;
         int physReq = major.physReq;
         int CSReq = major.CSReq;
         int engrReq = major.engrReq;
-        boolean full = false;
-    ArrayList<String[]> engrSched = new ArrayList();
-    //int quarterNum = 0;
-    boolean enoughCredits = false;
-    while(!enoughCredits) {
+       // static boolean full = false;
+       // int j = 0;
+        ArrayList<String[]> engrSched = new ArrayList();
+        //int quarterNum = 0;
+        boolean enoughCredits = false;
+        while (!enoughCredits) {
 
-        while (!full) {
-            if (student.math >= mathReq && student.CS >= CSReq &&
-                    student.engl >= englishReq && student.engr >= engrReq
-                    && student.chem >= chemReq && student.phys >= physReq) {
-                enoughCredits = true;
+            while (!full) {
+                if (student.math >= mathReq && student.CS >= CSReq &&
+                        student.engl >= englishReq && student.engr >= engrReq
+                        && student.chem >= chemReq && student.phys >= physReq) {
+                    enoughCredits = true;
 
-                for(int p = 0; p < engrSched.size(); p++) {
-                    System.out.println(Arrays.toString(engrSched.get(p)));
+                    for (int p = 0; p < engrSched.size(); p++) {
+                        System.out.println(Arrays.toString(engrSched.get(p)));
 
+                    }
+                    break;
                 }
-                    break;}
-            full=false;
-            int i = 0;
-            String[] quarter = new String[4];
-            engrSched.add(quarter);
-            if (student.math < mathReq) {
-                int b = student.math + 1;
-                quarter[i] = (String) mathList.get(b);
-                student.math = b;
-                i++;
-            }
-            if (isFull(i)) {
+                full = false;
+                 I = 0;
+                String[] quarter = new String[3];
+                engrSched.add(quarter);
+                student.math = matchFill(student.math, major.mathReq, quarter, Majors.mathList);
 
-                break;
-            }
-            if (student.CS < CSReq) {
-                int b = student.math + 1;
-                quarter[i] = (String) CS.get(b);
-                student.CS = b;
-                i++;
-            }
-            if (isFull(i)) {
+                student.CS = matchFill(student.CS, major.CSReq, quarter, Majors.CS);
 
-                break;
-            }
-            if (student.engl < englishReq) {
-                int b = student.engl + 1;
-                quarter[i] = (String) english.get(b);
-                student.engl = b;
-                i++;
-            }
-            if (isFull(i)) {
+                student.engl = matchFill(student.engl, major.englReq, quarter, Majors.english);
 
-                break;
-            }
-            if (student.chem < chemReq) {
-                int b = student.chem + 1;
-                quarter[i] = (String) chem.get(b);
-                student.chem = b;
-                i++;
-            }
-            if (isFull(i)) {
+                student.chem = matchFill(student.chem, major.chemReq, quarter, Majors.chem);
 
-                break;
-            }
-            if (student.phys < physReq) {
-                int b = student.phys + 1;
-                quarter[i] = (String) chem.get(b);
-                student.phys = b;
-                i++;
-            }
-            if (isFull(i)) {
+                student.phys = matchFill(student.phys, major.physReq, quarter, Majors.phys);
 
-                break;
-            }
-            if (student.engr < engrReq) {
-                int b = student.engr + 1;
-                quarter[i] = (String) engr.get(b);
-                student.engr = b;
-                i++;
-            }
-            if (isFull(i)) {
+                student.engr = matchFill(student.engr, major.engrReq, quarter, Majors.engr);
 
-                break;
+                if(I < 3 ){
+                quarter[I] = ("elective");
+                I++;}
+
+                if(I < 3){
+                quarter[I] = ("elective");
+                I++;}
+
             }
-            quarter[i] = ("elective");
-            i++;
-            break;
-
-
-        }
         }
 
+        {
+
         }
+
     }
+}
 
 
 
