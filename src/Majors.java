@@ -48,7 +48,7 @@ public class Majors {
         mathList.add("(8) Calc IV");
         mathList.add("(9) Differential Equations");
         mathList.add("(10) Linear Algebra");
-
+//beans
 
     }
 
