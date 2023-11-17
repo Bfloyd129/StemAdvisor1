@@ -202,7 +202,7 @@ public class Majors {
                 engrSched.add(quarter);//adds the new quarter into the schedule array
                 student.math = matchFill(student.math, major.mathReq, quarter, Majors.mathList);//calls to match classes taken to required and adds
                 //classes to the quarter array
-
+//can you see this?
                 student.CS = matchFill(student.CS, major.CSReq, quarter, Majors.CS);
 
                 student.engl = matchFill(student.engl, major.englReq, quarter, Majors.english);
