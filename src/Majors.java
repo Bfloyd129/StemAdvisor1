@@ -13,7 +13,7 @@ public class Majors {
     static boolean full = false;
 
     static ArrayList<String> ArraylistMajors = new ArrayList<>();
-
+//create new majors
     public Majors(int math, int phys, int CS, int engl, int engr, int chem) {
         this.mathReq = math;
         this.physReq = phys;
@@ -25,7 +25,7 @@ public class Majors {
     }
 
     static {
-
+//major options
         ArraylistMajors.add("(0) Mechanical Engr AS-T");
         ArraylistMajors.add("(1) Physics AS-T");
         ArraylistMajors.add("(2) CS AA-DTA");
@@ -36,7 +36,7 @@ public class Majors {
 
     static ArrayList mathList = new ArrayList();
 
-    static {
+    static {//classes  available
         mathList.add("(0) None");
         mathList.add("(1) Algebra for Precalc");
         mathList.add("(2) Precalc1");
@@ -124,11 +124,15 @@ public class Majors {
         nextQuarter.add("(3) SUMMER");
     }
 
-    public static void setEngr(Student student) {
-        Majors engrStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);
-        fill(engrStudent, student);
+    public static void setEngr(Student student) { //create a new engr student, populates values for requirements, then fills the schedule
+        Majors engrStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);//class requirements
+        fill(engrStudent, student);//fill schedule
     }
-
+    public static void setPhys(Student student) {
+        Majors physStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);
+        fill(physStudent, student);
+    }
+/*
     public static void setPhys(Student student) {
         int math = 7 + 1;
         int chem = 2 + 1;
@@ -138,7 +142,7 @@ public class Majors {
         int total = math + chem + phys + english + CS;
         System.out.println();
     }
-
+*/
     public static void setCS() {
         int math = 7 + 1;
         int chem = 2 + 1;
@@ -159,7 +163,7 @@ public class Majors {
 
     public static int matchFill(int studentVal, int reqVal, String[] quarter, ArrayList<String> classList){
         int b = studentVal;
-        if (I < 3) {
+        if (I < 3) {//check if the quarter array is full
             if (studentVal < reqVal) {
                 b = studentVal + 1;
                 quarter[I] = classList.get(b);
@@ -194,9 +198,10 @@ public class Majors {
                 }
                 full = false;
                  I = 0;
-                String[] quarter = new String[3];
-                engrSched.add(quarter);
-                student.math = matchFill(student.math, major.mathReq, quarter, Majors.mathList);
+                String[] quarter = new String[3];//creates a new quarter array
+                engrSched.add(quarter);//adds the new quarter into the schedule array
+                student.math = matchFill(student.math, major.mathReq, quarter, Majors.mathList);//calls to match classes taken to required and adds
+                //classes to the quarter array
 
                 student.CS = matchFill(student.CS, major.CSReq, quarter, Majors.CS);
 
