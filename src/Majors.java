@@ -176,10 +176,7 @@ public class Majors {
         int physReq = major.physReq;
         int CSReq = major.CSReq;
         int engrReq = major.engrReq;
-       // static boolean full = false;
-       // int j = 0;
         ArrayList<String[]> engrSched = new ArrayList();
-        //int quarterNum = 0;
         boolean enoughCredits = false;
         while (!enoughCredits) {
 
