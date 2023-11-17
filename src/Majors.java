@@ -48,7 +48,7 @@ public class Majors {
         mathList.add("(8) Calc IV");
         mathList.add("(9) Differential Equations");
         mathList.add("(10) Linear Algebra");
-
+//beans
 
     }
 
@@ -78,7 +78,7 @@ public class Majors {
         english.add("(3) ENGL& 102");
         english.add("(4) ENGL& 235");
 
-
+//hi
     }
 
     static ArrayList CS = new ArrayList();
