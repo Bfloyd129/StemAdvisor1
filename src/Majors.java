@@ -110,9 +110,9 @@ public class Majors {
 
     static {
 
-        engr.add("(1) ENGR& 214-Statics");
-        engr.add("(2) ENGR& 215-Dynamics");
-        engr.add("(3) ENGR& 225-Mechanics of Materials");
+        engr.add("(0) ENGR& 214-Statics");
+        engr.add("(1) ENGR& 215-Dynamics");
+        engr.add("(2) ENGR& 225-Mechanics of Materials");
     }
 
     static ArrayList nextQuarter = new ArrayList();
@@ -191,8 +191,29 @@ public class Majors {
                     enoughCredits = true;
 
                     for (int p = 0; p < engrSched.size(); p++) {
+                        switch (StemAdvisor.nextQuarter) {
+                            case 0:
+                                System.out.print("Fall:   ");
+                                StemAdvisor.nextQuarter++;
+                                break;
+                            case 1:
+                                System.out.print("Winter: ");
+                                StemAdvisor.nextQuarter++;
+                                break;
+                            case 2:
+                                System.out.print("Spring: ");
+                                if (StemAdvisor.allowSummer) {
+                                    StemAdvisor.nextQuarter++;
+                                } else {
+                                    StemAdvisor.nextQuarter = 0;
+                                }
+                                break;
+                            case 3:
+                                System.out.print("Summer: ");
+                                StemAdvisor.nextQuarter = 0;
+                                break;
+                        }
                         System.out.println(Arrays.toString(engrSched.get(p)));
-
                     }
                     break;
                 }

@@ -93,6 +93,8 @@ public class StemAdvisor {
             // Checks for major as it is formatted differently
             if (Objects.equals(subject, "major")) {
                 System.out.println("Please select your major from the following (enter number) ");
+            } else if (Objects.equals(subject, "nextQuarter")) {
+                System.out.println("What is the next quarter you will be taking");
             } else {
                 System.out.println("Please select the highest " + subject + " class you have taken");
             }
