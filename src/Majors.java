@@ -1,3 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,6 +15,9 @@ public class Majors {
     int chemReq;
     static int I = 0;
     static boolean full = false;
+
+    static FileWriter schedText;
+    static PrintWriter schedPrint;
 
     static ArrayList<String> ArraylistMajors = new ArrayList<>();
 //create new majors
@@ -45,9 +52,9 @@ public class Majors {
         mathList.add("(5) Calc I");
         mathList.add("(6) Calc II");
         mathList.add("(7) Calc III");
-        mathList.add("(8) Calc IV");
-        mathList.add("(9) Differential Equations");
-        mathList.add("(10) Linear Algebra");
+        mathList.add("(8) Differential Equations");
+        mathList.add("(9) Linear Algebra");
+        mathList.add("(10) Calc IV");
 //beans
 
     }
@@ -99,9 +106,10 @@ public class Majors {
     static ArrayList phys = new ArrayList();
 
     static {
-        phys.add("(0) PHYS& 221");
-        phys.add("(1) PHYS& 222");
-        phys.add("(2) PHYS& 223");
+        phys.add("(0) none");
+        phys.add("(1) PHYS& 221");
+        phys.add("(2) PHYS& 222");
+        phys.add("(3) PHYS& 223");
 
     }
 
@@ -109,10 +117,10 @@ public class Majors {
 
 
     static {
-
-        engr.add("(0) ENGR& 214-Statics");
-        engr.add("(1) ENGR& 215-Dynamics");
-        engr.add("(2) ENGR& 225-Mechanics of Materials");
+        engr.add("(0) none");
+        engr.add("(1) ENGR& 214-Statics");
+        engr.add("(2) ENGR& 215-Dynamics");
+        engr.add("(3) ENGR& 225-Mechanics of Materials");
     }
 
     static ArrayList nextQuarter = new ArrayList();
@@ -124,15 +132,38 @@ public class Majors {
         nextQuarter.add("(3) SUMMER");
     }
 
-    public static void setEngr(Student student) { //create a new engr student, populates values for requirements, then fills the schedule
-        Majors engrStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);//class requirements
+    public static void setEngr(Student student) throws IOException { //create a new engr student, populates values for requirements, then fills the schedule
+        Majors engrStudent = new Majors(10 , 2+1, 1 + 1, 1 + 1, 2+1, 2 + 1);//class requirements
         fill(engrStudent, student);//fill schedule
     }
-    public static void setPhys(Student student) {
-        Majors physStudent = new Majors(7 + 1, 2, 1 + 1, 1 + 1, 2, 2 + 1);
+    public static void setPhys(Student student) throws IOException {
+        Majors physStudent = new Majors(10 , 2+1, 1 + 1, 1 + 1, 2, 2 + 1);
         fill(physStudent, student);
     }
-/*
+    public static void setChem(Student student) throws IOException {
+        Majors chemStudent = new Majors(10 , 2 + 1, 1 + 1, 3 + 1,  1, 7 + 1);
+        fill(chemStudent, student);
+    }
+
+
+    public static void setCSAA(Student student) throws IOException {
+        Majors CSStudent = new Majors(10 ,2 + 1, 4 + 1, 3 + 1, 1, 1);
+        fill(CSStudent, student);
+    }
+
+
+    public static void setCSAS(Student student) throws IOException {
+        Majors CS2Student = new Majors(10 , 2 + 1, 6 + 1, 3 + 1, 1, 1);
+        fill(CS2Student, student);
+    }
+
+
+    public static void setCompEngr(Student student) throws IOException {
+        Majors cmpengrStudent = new Majors(10 ,2 + 1, 2 + 1, 3 + 1,  2 + 1, 2 + 1);
+        fill(cmpengrStudent, student);
+    }
+
+    /*
     public static void setPhys(Student student) {
         int math = 7 + 1;
         int chem = 2 + 1;
@@ -143,7 +174,7 @@ public class Majors {
         System.out.println();
     }
 */
-    public static void setCS() {
+  /*  public static void setCS() {
         int math = 7 + 1;
         int chem = 2 + 1;
         int english = 1 + 1;
@@ -151,7 +182,8 @@ public class Majors {
         int CS = 5 + 1;
         int total = math + chem + phys + english + CS;
     }
-
+*/
+    /*
     public static void setChem(Student student) {
         int math = 7 + 1;
         int chem = 2 + 1;
@@ -160,7 +192,7 @@ public class Majors {
         int CS = 1 + 1;
         int total = math + chem + phys + english + CS;
     }
-
+*/
     public static int matchFill(int studentVal, int reqVal, String[] quarter, ArrayList<String> classList){
         int b = studentVal;
         if (I < 3) {//check if the quarter array is full
@@ -173,7 +205,7 @@ public class Majors {
         return b;
     }
 
-    public static void fill(Majors major, Student student) {
+    public static void fill(Majors major, Student student) throws IOException {
         int mathReq = major.mathReq;
         int chemReq = major.chemReq;
         int englishReq = major.englReq;
@@ -189,19 +221,29 @@ public class Majors {
                         student.engl >= englishReq && student.engr >= engrReq
                         && student.chem >= chemReq && student.phys >= physReq) {
                     enoughCredits = true;
-
+                    try {
+                        schedText = new FileWriter("Schedule.txt");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+                    schedPrint = new PrintWriter(schedText);
+                    schedPrint.println("Schedule for " + student.first + ", " + student.last);
                     for (int p = 0; p < engrSched.size(); p++) {
                         switch (StemAdvisor.nextQuarter) {
                             case 0:
                                 System.out.print("Fall:   ");
+                                schedPrint.print("fall:   ");
                                 StemAdvisor.nextQuarter++;
                                 break;
                             case 1:
                                 System.out.print("Winter: ");
+                                schedPrint.print("Winter: ");
                                 StemAdvisor.nextQuarter++;
                                 break;
                             case 2:
                                 System.out.print("Spring: ");
+                                schedPrint.print("Spring: ");
                                 if (StemAdvisor.allowSummer) {
                                     StemAdvisor.nextQuarter++;
                                 } else {
@@ -210,11 +252,14 @@ public class Majors {
                                 break;
                             case 3:
                                 System.out.print("Summer: ");
+                                schedPrint.print("Summer: ");
                                 StemAdvisor.nextQuarter = 0;
                                 break;
                         }
                         System.out.println(Arrays.toString(engrSched.get(p)));
+                        schedPrint.println(Arrays.toString(engrSched.get(p)));
                     }
+                    schedText.close();
                     break;
                 }
                 full = false;
@@ -223,7 +268,7 @@ public class Majors {
                 engrSched.add(quarter);//adds the new quarter into the schedule array
                 student.math = matchFill(student.math, major.mathReq, quarter, Majors.mathList);//calls to match classes taken to required and adds
                 //classes to the quarter array
-//can you see this?
+
                 student.CS = matchFill(student.CS, major.CSReq, quarter, Majors.CS);
 
                 student.engl = matchFill(student.engl, major.englReq, quarter, Majors.english);

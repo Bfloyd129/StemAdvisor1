@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
@@ -10,6 +12,7 @@ import java.io.IOException;
 
 public class StemAdvisor {
     //declaring static variables
+
     static String FirstName;
     static String LastName;
     static int major;
@@ -27,7 +30,8 @@ public class StemAdvisor {
 
 
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
 
 
 //greet
@@ -35,7 +39,12 @@ public class StemAdvisor {
         System.out.println();
 //collect data from user
         collectdata();
-
+        try {
+            FileWriter schedText = new FileWriter("Schedule.txt");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         Student Student1 = new Student(FirstName, LastName, major, math, phys, CS, engl, engr, chem, nextQuarter, allowSummer);
         System.out.println("Thanks " + FirstName + "," + "\nYou selected " + Majors.mathList.get(math) + ", " +
@@ -82,9 +91,6 @@ public class StemAdvisor {
         return keyboard.nextBoolean();
 
         }
-
-
-
     public static int getInput(String subject, ArrayList options) {
         boolean valid = false;
         int input = 0;
@@ -118,4 +124,5 @@ public class StemAdvisor {
         }
         return input;
     }
+
 }
