@@ -85,7 +85,7 @@ public class Majors {
         english.add("(3) ENGL& 102");
         english.add("(4) ENGL& 235");
 
-//hi
+
     }
 
     static ArrayList CS = new ArrayList();
@@ -163,36 +163,6 @@ public class Majors {
         fill(cmpengrStudent, student);
     }
 
-    /*
-    public static void setPhys(Student student) {
-        int math = 7 + 1;
-        int chem = 2 + 1;
-        int english = 1 + 1;
-        int phys = 2 + 1;
-        int CS = 1 + 1;
-        int total = math + chem + phys + english + CS;
-        System.out.println();
-    }
-*/
-  /*  public static void setCS() {
-        int math = 7 + 1;
-        int chem = 2 + 1;
-        int english = 1 + 1;
-        int phys = 2 + 1;
-        int CS = 5 + 1;
-        int total = math + chem + phys + english + CS;
-    }
-*/
-    /*
-    public static void setChem(Student student) {
-        int math = 7 + 1;
-        int chem = 2 + 1;
-        int english = 1 + 1;
-        int phys = 2 + 1;
-        int CS = 1 + 1;
-        int total = math + chem + phys + english + CS;
-    }
-*/
     public static int matchFill(int studentVal, int reqVal, String[] quarter, ArrayList<String> classList){
         int b = studentVal;
         if (I < 3) {//check if the quarter array is full

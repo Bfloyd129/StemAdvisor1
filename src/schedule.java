@@ -34,6 +34,7 @@ public class schedule {
                 Majors.setChem(student);
                 break;
         }
+
     }
 
 }
